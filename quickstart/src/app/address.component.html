@@ -1,0 +1,21 @@
+<fieldset>
+    <label>Street: <input [(ngModel)]="address.street"></label>
+</fieldset>
+<fieldset>
+    <label>City: <input [(ngModel)]="address.city"></label>
+</fieldset>
+<fieldset>
+    <label>State: 
+                    <select [(ngModel)]="address.state">
+                        <option *ngFor="let state of states">{{state}}</option>
+                    </select>
+                </label>
+</fieldset>
+<fieldset>
+    <label>Region: 
+            <select [(ngModel)]="address.region">
+                <!-- list binding -->
+                <option *ngFor="let region of regions">{{region}}</option>
+            </select>
+        </label>
+</fieldset>
