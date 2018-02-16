@@ -1,0 +1,15 @@
+<!-- when the app starts there is no hero selected and it is undefined - it will fail because there is 
+no selected hero.  To fix this we add the *ngIf and se tto selected hero -->
+
+<div *ngIf="hero">
+  <h2>{{ hero.name | uppercase }} Details</h2>
+  <div><span>id: </span>{{hero.id}}</div>
+  <div>
+    <label>name:
+        <input [(ngModel)]="hero.name" placeholder="name">
+    </label>
+  </div>
+</div>
+
+<button (click)="goBack()">Go Back</button>
+<button (click)="save()">Save</button>

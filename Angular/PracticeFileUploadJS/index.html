@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Excel to JSON Demo</title>
+    <!-- Bootstrap core CSS -->
+    <script src=xlsx.full.min.js></script>
+</head>
+
+<body>
+        <input type="file" name="excelFile" (change)="getFiles($event)">
+    <script>
+        var url = "FileUpload.xlsx";
+
+        /* set up async GET request */
+        var req = new XMLHttpRequest();
+        req.open("GET", url, true);
+        req.responseType = "arraybuffer";
+
+        req.onload = function (e) {
+            var data = new Uint8Array(req.response);
+            var workbook = XLSX.read(data, { type: "array" });
+
+            /* DO SOMETHING WITH workbook HERE */
+            var first_sheet_name = workbook.SheetNames[0];
+            var address_of_cell = 'A1';
+
+            /* Get worksheet */
+            var worksheet = workbook.Sheets[first_sheet_name];
+            console.log(XLSX.utils.sheet_to_json(worksheet));
+        }
+
+        req.send();
+    </script>
+</body>
+
+</html>

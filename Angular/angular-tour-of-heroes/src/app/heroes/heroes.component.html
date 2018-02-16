@@ -1,0 +1,36 @@
+<!-- <h2>{{hero.name | uppercase}} Details</h2>
+<div><span>id: </span>{{hero.id}}</div>
+<div>
+  <label>name: 
+    <input [(ngModel)]="hero.name" placeholder="name">
+  </label>
+</div> -->
+
+<!-- above only displayed one hero, now we are going to display a list of heroes (HEROES) -->
+
+<h2>My Heroes</h2>
+<ul class="heroes">
+  <li *ngFor="let hero of heroes">
+    <a routerLink="/detail/{{hero.id}}">
+    <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </a>
+  </li>
+</ul>
+
+<!-- Moved everything below to hero-details component / now the heroes component will send the selectedHeroes information
+to the hero-details component to display with the following hero-details selector -->
+<!-- removing this so that we can route to the details instead of show the details at the bottom of the list -->
+<!-- <app-hero-detail [hero]="selectedHero"></app-hero-detail> -->
+
+<!-- when the app starts there is no hero selected and it is undefined - it will fail because there is 
+no selected hero.  To fix this we add the *ngIf and se tto selected hero -->
+
+<!-- <div *ngIf="selectedHero">
+  <h2>{{ selectedHero.name | uppercase }} Details</h2>
+  <div><span>id: </span>{{selectedHero.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="selectedHero.name" placeholder="name">
+  </label>
+  </div>
+</div> -->

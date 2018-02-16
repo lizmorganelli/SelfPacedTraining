@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app="store">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body ng-controller="StoreController as store">
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="product in store.products">
+            <!-- <h3 ng-include="'product-title.html'">
+            
+            </h3> -->
+            <product-title></product-title>
+            <section>
+                <product-panels></product-panels>
+                <!-- <ul class="nav nav=pills">
+                    <li ng-class="{ active: panel.isSelected(1) }">
+                        <a href ng-click="panel.selectTab(1)">Description</a>
+                    </li>
+                    <li ng-class="{ active: panel.isSelected(2) }">
+                        <a href ng-click="panel.selectTab(2)">Specifications</a>
+                    </li>
+                    <li ng-class="{ active: panel.isSelected(3)}">
+                        <a href ng-click="panel.selectTab(3)">Reviews</a>
+                    </li>
+                </ul> -->
+                <div class="panel" ng-show="panel.isSelected(1)">
+                    <h4>Description</h4>
+                    <p>{{product.description}}</p>
+                </div>
+                <div class="panel" ng-show="panel.isSelected(2)">
+                    <h4>Specifications</h4>
+                    <p>None yet</p>
+                </div>
+                <div class="panel" ng-show="panel.isSelected(3)">
+                    <ul>
+                        <h4>Reviews</h4>
+                        <li ng-repeat="review in product.reviews">
+                            <blockquote>
+                                <strong>{{review.stars}} Stars</strong> {{review.body}}
+                                <cite class="clearfix">- {{review.author}}</cite>
+                            </blockquote>
+                        </li>
+                    </ul>
+                    <form name="reviewForm" ng-controller="ReviewController as reviewCtrl" 
+                    ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+
+                        <blockquote>
+                            <strong>{{reviewCtrl.review.stars}} Stars</strong> {{reviewCtrl.review.body}}
+                            <cite class="clearfix">-{{reviewCtrl.review.author}}</cite>
+                        </blockquote>
+
+                        <h4>Submit a Review</h4>
+                        <fieldset class="form-group">
+                            <select ng-model="reviewCtrl.review.stars" class="form-control" required ng-options="stars for stars in [5,4,3,2,1]" title="Stars">
+                                  <option value="">Rate the Product</option>
+                                </select>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <textarea ng-model="reviewCtrl.review.body" class="form-control" required placeholder="Write a short review of the product..." title="Review"></textarea>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <input ng-model="reviewCtrl.review.author" type="email" required class="form-control" placeholder="jimmyDean@example.org" title="Email"
+                            />
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <div>reviewFrom is {{reviewForm.$valid}}</div> 
+                            <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+                        </fieldset>
+                    </form>
+                </div>
+            </section>
+        </li>
+    </ul>
+    <!-- <div ng-repeat="product in store.products">
+            <h1> {{product.name}} </h1>
+            <h2> ${{product.price}} </h2>
+            <p> {{product.description}} </p>
+            <button ng-show="product.canPurchase"> Add to Cart </button>
+        </div> -->
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script src="products.js"></script>
+
+</body>
+
+</html>

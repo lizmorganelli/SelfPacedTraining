@@ -1,0 +1,10 @@
+<h1>{{title}}</h1>
+<nav>
+    <a routerLink="/dashboard">Dashboard</a>
+    <a routerLink="/heroes">Heroes</a>
+</nav>
+<!-- <app-heroes></app-heroes> -->
+<!-- replacing app-heroes with router-outlet since we will now have more than one page and
+the router outlet will tell the router where to display the views -->
+<router-outlet></router-outlet>
+<app-messages></app-messages>
